@@ -4,6 +4,8 @@ public struct Frame: Equatable {
     public static let serviceUUID = "ade40601-99c2-4635-b4d5-376c15c67a7e"
     public static let requestUUID = "ade40602-99c2-4635-b4d5-376c15c67a7e"
     public static let replyUUID = "ade40603-99c2-4635-b4d5-376c15c67a7e"
+    public static let batteryUUID = "ade40604-99c2-4635-b4d5-376c15c67a7e"
+    public static let relayUUID = "ade40605-99c2-4635-b4d5-376c15c67a7e"
     public static let maximumTextBytes = 16
 
     public enum Opcode: UInt8 {

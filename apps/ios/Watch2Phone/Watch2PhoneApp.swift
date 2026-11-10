@@ -11,7 +11,8 @@ struct Watch2PhoneApp: App {
             BridgeView(model: model)
                 .task { model.activate() }
                 .onChange(of: scenePhase) { _, phase in
-                    if phase == .background { model.suspend() }
+                    if phase == .background { model.setForeground(false) }
+                    if phase == .active { model.setForeground(true) }
                 }
         }
     }

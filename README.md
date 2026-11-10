@@ -8,7 +8,17 @@ watch2phone is an open-source project exploring how smartwatches and phones from
 
 The iPhone app scans for nearby BLE devices and displays their name, local identifier and RSSI when available. It connects to devices advertising the watch2phone service and discovers the request and reply characteristics. The watch app publishes the service and echoes short UTF-8 test messages. Both apps expose session status, and the phone shows replies, errors and a bounded Bluetooth log.
 
-Both apps build, and the iPhone app launches in the iOS Simulator. The Swift and Kotlin protocol and state tests passed against the same wire vectors. **A physical watch-to-iPhone exchange is pending.** [Compatibility and test status](docs/compatibility.md)
+While connected, the iPhone shows the watch battery in percent and the current Bluetooth signal strength in dBm. The app checks both values about every five seconds while the connection is ready.
+
+### iPhone notification sharing
+
+1. On the watch, enable **iPhone notifications**, tap **Start**, and grant the watch app notification permission if asked.
+2. On the iPhone, enable **Share iPhone notifications** in watch2phone, then scan and connect. Confirm Bluetooth pairing and allow iOS to share notifications with the watch.
+3. Generate a new iPhone notification. The watch app should report **iPhone notifications are on**, and the new notification should appear in Wear OS.
+
+The relay uses Apple's ANCS service. It forwards new titles and message previews during the session. Tap **Stop** in the watch app or in its ongoing session notification to end sharing. The watch removes the previews when sharing ends. After a Bluetooth disconnect, reopen the iPhone app and connect again.
+
+Both apps build, and the Swift and Kotlin protocol and state tests pass against the same wire vectors. A physical echo and reconnect passed on the Samsung SM-R930 and iPhone 18 Pro Max. [Compatibility and test status](docs/compatibility.md)
 
 ## Device targets
 
@@ -77,7 +87,7 @@ adb -s WATCH_IP:DEBUGGING_PORT install -r app/build/outputs/apk/debug/app-debug.
 
 Keep both apps open for the experiment. The phone scans for up to 15 seconds at a time. The watch advertises at low power for up to two minutes while waiting for a test exchange and restarts advertising after the active peer disconnects. Bluetooth hardware and firmware can restrict advertising.
 
-This release covers an unauthenticated app-to-app connection for disposable messages. Native Samsung setup, iOS notification forwarding, background restoration, health data, system synchronization and Apple Watch support remain outside Phase 1.
+The echo test remains an unauthenticated app-to-app exchange for disposable messages. Notification sharing requires a separate opt-in on both apps, an encrypted Bluetooth link, and iOS authorization. Native Samsung setup, background restoration, health data, system synchronization and Apple Watch support remain outside the current scope.
 
 ## Contributing
 

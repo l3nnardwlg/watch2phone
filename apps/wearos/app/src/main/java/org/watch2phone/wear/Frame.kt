@@ -8,6 +8,8 @@ internal object BridgeProtocol {
     val serviceUuid: UUID = UUID.fromString("ade40601-99c2-4635-b4d5-376c15c67a7e")
     val requestUuid: UUID = UUID.fromString("ade40602-99c2-4635-b4d5-376c15c67a7e")
     val replyUuid: UUID = UUID.fromString("ade40603-99c2-4635-b4d5-376c15c67a7e")
+    val batteryUuid: UUID = UUID.fromString("ade40604-99c2-4635-b4d5-376c15c67a7e")
+    val relayUuid: UUID = UUID.fromString("ade40605-99c2-4635-b4d5-376c15c67a7e")
 }
 
 internal enum class Opcode(val wire: Int) { REQUEST(1), REPLY(2) }

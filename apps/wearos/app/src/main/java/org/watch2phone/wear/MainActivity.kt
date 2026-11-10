@@ -9,6 +9,7 @@ import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
@@ -19,7 +20,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -32,21 +36,26 @@ import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.TimeText
+import androidx.wear.compose.material.Switch
+import androidx.wear.compose.material.ToggleChip
 
 class MainActivity : ComponentActivity() {
-    private lateinit var peripheral: WatchPeripheral
+    private val peripheral get() = (application as Watch2PhoneApplication).bridge
+    private var relayRequested by mutableStateOf(false)
     private val requiredPermissions: Array<String>
-        get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            arrayOf(Manifest.permission.BLUETOOTH_ADVERTISE, Manifest.permission.BLUETOOTH_CONNECT)
-        } else {
-            emptyArray()
-        }
+        get() = buildList {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                add(Manifest.permission.BLUETOOTH_ADVERTISE)
+                add(Manifest.permission.BLUETOOTH_CONNECT)
+            }
+            if (relayRequested && Build.VERSION.SDK_INT >= 33) add(Manifest.permission.POST_NOTIFICATIONS)
+        }.toTypedArray()
 
     private val permissionRequest = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
         if (hasPermissions()) {
-            if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) peripheral.start()
+            if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) startSession()
         } else {
-            peripheral.permissionDenied()
+            peripheral.stop("Allow Nearby Devices and, for sharing, Notifications to start.")
         }
     }
 
@@ -62,11 +71,25 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        peripheral = WatchPeripheral(applicationContext)
+        relayRequested = savedInstanceState?.getBoolean("relayRequested") ?: false
         setContent {
             val status by peripheral.status.collectAsStateWithLifecycle()
-            WatchScreen(status, onStart = ::start, onStop = { peripheral.stop() })
+            // The bridge stops in onStop. Give the iPhone the advertised discovery window
+            // even when the watch would otherwise go idle before the first exchange.
+            val awaitingPeer = status.phase == PeripheralState.STARTING ||
+                status.phase == PeripheralState.ADVERTISING
+            DisposableEffect(awaitingPeer) {
+                val flag = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                if (awaitingPeer) window.addFlags(flag)
+                onDispose { window.clearFlags(flag) }
+            }
+            WatchScreen(status, relayRequested, { relayRequested = it }, ::start) { peripheral.stop() }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean("relayRequested", relayRequested)
+        super.onSaveInstanceState(outState)
     }
 
     override fun onStart() {
@@ -80,12 +103,20 @@ class MainActivity : ComponentActivity() {
 
     override fun onStop() {
         unregisterReceiver(radioChanges)
-        peripheral.stop()
+        if (!peripheral.relaysNotifications) peripheral.stop()
         super.onStop()
     }
 
     private fun start() {
-        if (hasPermissions()) peripheral.start() else permissionRequest.launch(requiredPermissions)
+        if (hasPermissions()) startSession() else permissionRequest.launch(requiredPermissions)
+    }
+
+    private fun startSession() {
+        if (relayRequested) {
+            ContextCompat.startForegroundService(this, Intent(this, NotificationRelayService::class.java))
+        } else {
+            peripheral.start()
+        }
     }
 
     private fun hasPermissions(): Boolean =
@@ -93,7 +124,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun WatchScreen(status: WatchStatus, onStart: () -> Unit, onStop: () -> Unit) {
+private fun WatchScreen(
+    status: WatchStatus, relayRequested: Boolean, onRelayChange: (Boolean) -> Unit,
+    onStart: () -> Unit, onStop: () -> Unit,
+) {
     MaterialTheme {
         Scaffold(timeText = { TimeText() }) {
             Column(
@@ -113,9 +147,20 @@ private fun WatchScreen(status: WatchStatus, onStart: () -> Unit, onStop: () -> 
                 status.lastEcho?.let {
                     Text("Echo: $it", style = MaterialTheme.typography.caption1, textAlign = TextAlign.Center)
                 }
+                status.notificationStatus?.let {
+                    Text(it, style = MaterialTheme.typography.caption1, textAlign = TextAlign.Center)
+                }
                 val stopped = status.phase == PeripheralState.STOPPED
                 Button(onClick = if (stopped) onStart else onStop) {
                     Text(if (stopped) "Start" else "Stop")
+                }
+                if (stopped) {
+                    ToggleChip(
+                        checked = relayRequested,
+                        onCheckedChange = onRelayChange,
+                        label = { Text("iPhone notifications") },
+                        toggleControl = { Switch(checked = relayRequested) },
+                    )
                 }
             }
         }

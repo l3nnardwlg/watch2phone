@@ -15,10 +15,14 @@ final class BridgeViewModel: ObservableObject {
     @Published private(set) var scanning = false
     @Published private(set) var link: LinkState = .idle
     @Published private(set) var devices: [NearbyDevice] = []
+    @Published private(set) var watchBattery: Int?
+    @Published private(set) var signalStrength: Int?
+    @Published private(set) var notificationAuthorization: Bool?
     @Published private(set) var response: String?
     @Published private(set) var error: String?
     @Published private(set) var diagnostics: [Diagnostic] = []
     @Published var bridgeOnly = true
+    @Published var shareNotifications = false
     @Published var text = "Ping"
 
     private let transport: any BridgeTransport
@@ -48,7 +52,7 @@ final class BridgeViewModel: ObservableObject {
     func connect(_ id: UUID) {
         error = nil
         response = nil
-        transport.connect(to: id)
+        transport.connect(to: id, shareNotifications: shareNotifications)
     }
 
     func send() {
@@ -62,10 +66,7 @@ final class BridgeViewModel: ObservableObject {
 
     func disconnect() { transport.disconnect() }
 
-    func suspend() {
-        transport.stopScan()
-        transport.disconnect()
-    }
+    func setForeground(_ foreground: Bool) { transport.setForeground(foreground) }
 
     private func receive(_ event: TransportEvent) {
         switch event {
@@ -78,7 +79,17 @@ final class BridgeViewModel: ObservableObject {
             self.devices = devices
         case let .state(state):
             link = state
-            if state == .idle || state == .disconnecting { pending = nil }
+            if state == .idle || state == .disconnecting {
+                pending = nil
+                watchBattery = nil
+                signalStrength = nil
+            }
+        case let .batteryLevel(level):
+            watchBattery = level
+        case let .signalStrength(rssi):
+            signalStrength = rssi
+        case let .notificationAuthorization(authorized):
+            notificationAuthorization = authorized
         case let .frame(frame):
             guard let pending, frame.answers(pending) else {
                 record("Reply did not match the pending test request. Reconnect to retry.", isError: true)

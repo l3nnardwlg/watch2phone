@@ -12,6 +12,9 @@ enum TransportEvent {
     case scan(Bool)
     case devices([NearbyDevice])
     case state(LinkState)
+    case batteryLevel(Int?)
+    case signalStrength(Int?)
+    case notificationAuthorization(Bool?)
     case frame(Frame)
     case diagnostic(String, isError: Bool)
 }
@@ -22,7 +25,8 @@ protocol BridgeTransport: AnyObject {
     func activate()
     func startScan(bridgeOnly: Bool)
     func stopScan()
-    func connect(to id: UUID)
+    func connect(to id: UUID, shareNotifications: Bool)
+    func setForeground(_ foreground: Bool)
     func send(_ frame: Frame)
     func disconnect()
 }

@@ -10,6 +10,19 @@ struct BridgeView: View {
                 Section("Connection") {
                     Text(model.radioStatus)
                     LabeledContent("Session", value: model.link.rawValue.capitalized)
+                    if model.link == .ready || model.link == .writing || model.link == .reading {
+                        LabeledContent("Watch battery", value: model.watchBattery.map { "\($0)%" } ?? "—")
+                        LabeledContent("Signal strength", value: model.signalStrength.map { "\($0) dBm" } ?? "—")
+                    }
+                    Toggle("Share iPhone notifications", isOn: $model.shareNotifications)
+                        .disabled(model.link != .idle)
+                    if let authorized = model.notificationAuthorization {
+                        LabeledContent("Notification access", value: authorized ? "Allowed" : "Awaiting permission")
+                    } else if model.shareNotifications && model.link == .idle {
+                        Text("Enable iPhone notifications on the watch before connecting.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                     if let error = model.error {
                         Label(error, systemImage: "exclamationmark.circle")
                             .foregroundStyle(.red)

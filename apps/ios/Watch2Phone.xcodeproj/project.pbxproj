@@ -167,6 +167,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B4627Q2S6H;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Watch2Phone/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = watch2phone;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "watch2phone uses Bluetooth to find the watch companion and exchange test messages.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -187,6 +188,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B4627Q2S6H;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Watch2Phone/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = watch2phone;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "watch2phone uses Bluetooth to find the watch companion and exchange test messages.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

@@ -6,11 +6,11 @@
 | Kotlin protocol and peripheral state tests | Passed on the host JVM. |
 | Swift protocol and link state tests | Passed on macOS and Windows. |
 | iPhone app build | Unsigned device build and simulator build passed with Xcode 27.2. App launched on an iPhone 18 Pro simulator. |
-| Physical discovery, GATT discovery, echo and reconnect | Pending. No physical watch and iPhone were available for the implementation check. |
+| Physical discovery, GATT discovery, echo and reconnect | Passed on iPhone 18 Pro Max (iOS 27.0.1) and Samsung SM-R930 (Android 16, R930XXU1CYK2). Verified 4-byte and 16-byte echoes before and after reconnecting. |
 
 | Hardware target | Prerequisite | Result |
 | --- | --- | --- |
-| Samsung Galaxy Watch4–8 series and newer Wear OS Galaxy Watch models with iPhone | Watch already configured and capable of connectable BLE advertising. iPhone on iOS 17 or later. | Pending per model and firmware. |
+| Samsung Galaxy Watch4–8 series and newer Wear OS Galaxy Watch models with iPhone | Watch already configured and capable of connectable BLE advertising. iPhone on iOS 17 or later. | Verified on SM-R930 with the firmware above. Other models and firmware remain pending. |
 | Xiaomi and other Wear OS watches with iPhone | Android API 30 or later, BLE advertising and GATT server support. | Planned. |
 | Apple Watch with Android | Public API feasibility investigation. | Future research. |
 
