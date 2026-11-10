@@ -2,10 +2,10 @@
 
 | Check | Status |
 | --- | --- |
-| Wear OS debug APK and lint | Passed on Windows with Android SDK Platform 35 and Gradle 8.10.2. |
+| Wear OS debug APK and lint | Passed on macOS and Windows with Android SDK Platform 35 and Gradle 8.10.2. |
 | Kotlin protocol and peripheral state tests | Passed on the host JVM. |
-| Swift protocol and link state tests | Passed with Swift 6.4.1 on Windows. |
-| iPhone app build | Pending Xcode on macOS. The macOS CI job runs an unsigned iPhone build. |
+| Swift protocol and link state tests | Passed on macOS and Windows. |
+| iPhone app build | Unsigned device build and simulator build passed with Xcode 27.2. App launched on an iPhone 18 Pro simulator. |
 | Physical discovery, GATT discovery, echo and reconnect | Pending. No physical watch and iPhone were available for the implementation check. |
 
 | Hardware target | Prerequisite | Result |

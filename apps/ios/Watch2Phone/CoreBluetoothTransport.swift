@@ -1,4 +1,3 @@
-import BridgeCore
 import CoreBluetooth
 import Foundation
 

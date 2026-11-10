@@ -34,4 +34,4 @@ jobs:
       - name: Install Android SDK platform
         run: sdkmanager 'platforms;android-35' 'build-tools;34.0.0'
       - name: Build, test and lint
-        run: bash gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
+        run: ./gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug

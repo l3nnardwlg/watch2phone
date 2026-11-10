@@ -1,4 +1,3 @@
-import BridgeCore
 import Foundation
 
 struct NearbyDevice: Identifiable {

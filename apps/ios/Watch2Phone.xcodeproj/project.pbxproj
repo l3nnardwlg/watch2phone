@@ -1,8 +1,9 @@
 // !$*UTF8*$!
 {
 	archiveVersion = 1;
-	classes = {};
-	objectVersion = 56;
+	classes = {
+	};
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,23 +12,27 @@
 		000000000000000000000016 /* BridgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000000C /* BridgeViewModel.swift */; };
 		000000000000000000000017 /* Watch2PhoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000000D /* Watch2PhoneApp.swift */; };
 		000000000000000000000018 /* BridgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000000E /* BridgeView.swift */; };
-		000000000000000000000019 /* BridgeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000000000008 /* BridgeCore */; };
+		000000000000000000000024 /* Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000026 /* Frame.swift */; };
+		000000000000000000000025 /* LinkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000027 /* LinkState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		000000000000000000000009 /* Watch2Phone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = Watch2Phone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00000000000000000000000A /* BridgeTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeTransport.swift; sourceTree = "<group>"; };
 		00000000000000000000000B /* CoreBluetoothTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreBluetoothTransport.swift; sourceTree = "<group>"; };
 		00000000000000000000000C /* BridgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeViewModel.swift; sourceTree = "<group>"; };
 		00000000000000000000000D /* Watch2PhoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watch2PhoneApp.swift; sourceTree = "<group>"; };
 		00000000000000000000000E /* BridgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeView.swift; sourceTree = "<group>"; };
-		000000000000000000000009 /* Watch2Phone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = Watch2Phone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		000000000000000000000026 /* Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frame.swift; sourceTree = "<group>"; };
+		000000000000000000000027 /* LinkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		000000000000000000000006 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
-			files = (000000000000000000000019 /* BridgeCore in Frameworks */,);
+			files = (
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -35,7 +40,11 @@
 /* Begin PBXGroup section */
 		000000000000000000000002 = {
 			isa = PBXGroup;
-			children = (000000000000000000000003 /* Watch2Phone */, 000000000000000000000004 /* Products */,);
+			children = (
+				000000000000000000000003 /* Watch2Phone */,
+				000000000000000000000028 /* BridgeCore */,
+				000000000000000000000004 /* Products */,
+			);
 			sourceTree = "<group>";
 		};
 		000000000000000000000003 /* Watch2Phone */ = {
@@ -52,8 +61,20 @@
 		};
 		000000000000000000000004 /* Products */ = {
 			isa = PBXGroup;
-			children = (000000000000000000000009 /* Watch2Phone.app */,);
+			children = (
+				000000000000000000000009 /* Watch2Phone.app */,
+			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		000000000000000000000028 /* BridgeCore */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000026 /* Frame.swift */,
+				000000000000000000000027 /* LinkState.swift */,
+			);
+			name = BridgeCore;
+			path = BridgeCore/Sources/BridgeCore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -61,12 +82,16 @@
 /* Begin PBXNativeTarget section */
 		000000000000000000000005 /* Watch2Phone */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 000000000000000000000021 /* Target configurations */;
-			buildPhases = (00000000000000000000000F /* Sources */, 000000000000000000000006 /* Frameworks */,);
-			buildRules = ();
-			dependencies = ();
+			buildConfigurationList = 000000000000000000000021 /* Build configuration list for PBXNativeTarget "Watch2Phone" */;
+			buildPhases = (
+				00000000000000000000000F /* Sources */,
+				000000000000000000000006 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
 			name = Watch2Phone;
-			packageProductDependencies = (000000000000000000000008 /* BridgeCore */,);
 			productName = Watch2Phone;
 			productReference = 000000000000000000000009 /* Watch2Phone.app */;
 			productType = "com.apple.product-type.application";
@@ -76,18 +101,24 @@
 /* Begin PBXProject section */
 		000000000000000000000001 /* Project object */ = {
 			isa = PBXProject;
-			attributes = { LastUpgradeCheck = 1600; };
-			buildConfigurationList = 00000000000000000000001E /* Project configurations */;
+			attributes = {
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = 00000000000000000000001E /* Build configuration list for PBXProject "Watch2Phone" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
-			knownRegions = (en, Base,);
+			knownRegions = (
+				en,
+				Base,
+			);
 			mainGroup = 000000000000000000000002;
-			packageReferences = (000000000000000000000007 /* BridgeCore local package */,);
 			productRefGroup = 000000000000000000000004 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
-			targets = (000000000000000000000005 /* Watch2Phone */,);
+			targets = (
+				000000000000000000000005 /* Watch2Phone */,
+			);
 		};
 /* End PBXProject section */
 
@@ -101,6 +132,8 @@
 				000000000000000000000016 /* BridgeViewModel.swift in Sources */,
 				000000000000000000000017 /* Watch2PhoneApp.swift in Sources */,
 				000000000000000000000018 /* BridgeView.swift in Sources */,
+				000000000000000000000024 /* Frame.swift in Sources */,
+				000000000000000000000025 /* LinkState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +143,7 @@
 		00000000000000000000001F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -119,6 +153,7 @@
 		000000000000000000000020 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -130,13 +165,14 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B4627Q2S6H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = watch2phone;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "watch2phone uses Bluetooth to find the watch companion and exchange test messages.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.watch2phone.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agfstudios.watch2phone.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_VERSION = 5.0;
@@ -149,13 +185,14 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B4627Q2S6H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = watch2phone;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "watch2phone uses Bluetooth to find the watch companion and exchange test messages.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.watch2phone.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agfstudios.watch2phone.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_VERSION = 5.0;
@@ -166,31 +203,26 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00000000000000000000001E /* Project configurations */ = {
+		00000000000000000000001E /* Build configuration list for PBXProject "Watch2Phone" */ = {
 			isa = XCConfigurationList;
-			buildConfigurations = (00000000000000000000001F /* Debug */, 000000000000000000000020 /* Release */,);
+			buildConfigurations = (
+				00000000000000000000001F /* Debug */,
+				000000000000000000000020 /* Release */,
+			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		000000000000000000000021 /* Target configurations */ = {
+		000000000000000000000021 /* Build configuration list for PBXNativeTarget "Watch2Phone" */ = {
 			isa = XCConfigurationList;
-			buildConfigurations = (000000000000000000000022 /* Debug */, 000000000000000000000023 /* Release */,);
+			buildConfigurations = (
+				000000000000000000000022 /* Debug */,
+				000000000000000000000023 /* Release */,
+			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		000000000000000000000007 /* BridgeCore local package */ = {isa = XCLocalSwiftPackageReference; relativePath = BridgeCore; };
-/* End XCLocalSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		000000000000000000000008 /* BridgeCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 000000000000000000000007 /* BridgeCore local package */;
-			productName = BridgeCore;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 000000000000000000000001 /* Project object */;
 }

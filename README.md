@@ -8,7 +8,7 @@ watch2phone is an open-source project exploring how smartwatches and phones from
 
 The iPhone app scans for nearby BLE devices and displays their name, local identifier and RSSI when available. It connects to devices advertising the watch2phone service and discovers the request and reply characteristics. The watch app publishes the service and echoes short UTF-8 test messages. Both apps expose session status, and the phone shows replies, errors and a bounded Bluetooth log.
 
-The Wear OS debug APK and Android lint passed on Windows. The Swift and Kotlin protocol and state tests passed against the same wire vectors. **An Xcode build of the iPhone app and a physical watch-to-iPhone exchange are pending.** [Compatibility and test status](docs/compatibility.md)
+Both apps build, and the iPhone app launches in the iOS Simulator. The Swift and Kotlin protocol and state tests passed against the same wire vectors. **A physical watch-to-iPhone exchange is pending.** [Compatibility and test status](docs/compatibility.md)
 
 ## Device targets
 
@@ -31,11 +31,11 @@ SwiftUI and Core Bluetooth on the iPhone, Jetpack Compose for Wear OS and Androi
 
 ### iPhone
 
-Use macOS with Xcode 16 or newer and an iPhone running iOS 17 or newer.
+Use macOS with Xcode 16 or newer. For physical testing, use an iPhone running iOS 17 or newer.
 
-1. Open `apps/ios/Watch2Phone.xcodeproj` in Xcode.
-2. Choose the **Watch2Phone** target, enable automatic signing, and select your development team. Use a unique bundle identifier if needed.
-3. Select your physical iPhone as the destination and run the app. Follow the device prompts for development deployment and Bluetooth access.
+Open `apps/ios/Watch2Phone.xcodeproj` in Xcode, choose the **Watch2Phone** scheme and an iPhone simulator, then press **Run** (⌘R). The simulator build does not need an Apple development team. Use a physical iPhone and Wear OS watch to test Bluetooth.
+
+For a physical iPhone, sign in under **Xcode → Settings → Accounts**. In the **Watch2Phone** target, open **Signing & Capabilities**, enable **Automatically manage signing**, and select your team (or **Personal Team**). Change the bundle identifier if Xcode reports that it is unavailable. Then select your iPhone and press **Run**.
 
 From the repository root, build without signing and run the portable Swift tests with the following commands.
 
@@ -47,11 +47,11 @@ swift test --package-path apps/ios/BridgeCore
 
 ### Wear OS
 
-Use Android Studio or JDK 17, Android SDK Platform 35, Build Tools 34.0.0 and Platform Tools. The app targets API 35 and installs on Wear OS devices running Android API 30 or later. For the command line, set `JAVA_HOME` to JDK 17 and `ANDROID_HOME` to the SDK location.
+Use JDK 17, Android SDK Platform 35, Build Tools 34.0.0 and Platform Tools. The app targets API 35 and installs on Wear OS devices running Android API 30 or later. Open `apps/wearos` in Android Studio to configure the SDK, or set `JAVA_HOME` to JDK 17 and `ANDROID_HOME` to the SDK location in your terminal. On macOS, Android Studio normally installs the SDK at `~/Library/Android/sdk`.
 
 ```sh
 cd apps/wearos
-bash gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
+./gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
 ```
 
 On Windows PowerShell, use `.\gradlew.bat :app:assembleDebug :app:testDebugUnitTest :app:lintDebug` from `apps/wearos`.

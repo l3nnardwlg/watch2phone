@@ -1,4 +1,3 @@
-import BridgeCore
 import Foundation
 import SwiftUI
 
