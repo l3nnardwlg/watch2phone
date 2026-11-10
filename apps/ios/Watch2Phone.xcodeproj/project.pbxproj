@@ -1,0 +1,196 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		000000000000000000000014 /* BridgeTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000000A /* BridgeTransport.swift */; };
+		000000000000000000000015 /* CoreBluetoothTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000000B /* CoreBluetoothTransport.swift */; };
+		000000000000000000000016 /* BridgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000000C /* BridgeViewModel.swift */; };
+		000000000000000000000017 /* Watch2PhoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000000D /* Watch2PhoneApp.swift */; };
+		000000000000000000000018 /* BridgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000000E /* BridgeView.swift */; };
+		000000000000000000000019 /* BridgeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000000000008 /* BridgeCore */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		00000000000000000000000A /* BridgeTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeTransport.swift; sourceTree = "<group>"; };
+		00000000000000000000000B /* CoreBluetoothTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreBluetoothTransport.swift; sourceTree = "<group>"; };
+		00000000000000000000000C /* BridgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeViewModel.swift; sourceTree = "<group>"; };
+		00000000000000000000000D /* Watch2PhoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watch2PhoneApp.swift; sourceTree = "<group>"; };
+		00000000000000000000000E /* BridgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeView.swift; sourceTree = "<group>"; };
+		000000000000000000000009 /* Watch2Phone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = Watch2Phone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		000000000000000000000006 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (000000000000000000000019 /* BridgeCore in Frameworks */,);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		000000000000000000000002 = {
+			isa = PBXGroup;
+			children = (000000000000000000000003 /* Watch2Phone */, 000000000000000000000004 /* Products */,);
+			sourceTree = "<group>";
+		};
+		000000000000000000000003 /* Watch2Phone */ = {
+			isa = PBXGroup;
+			children = (
+				00000000000000000000000A /* BridgeTransport.swift */,
+				00000000000000000000000B /* CoreBluetoothTransport.swift */,
+				00000000000000000000000C /* BridgeViewModel.swift */,
+				00000000000000000000000D /* Watch2PhoneApp.swift */,
+				00000000000000000000000E /* BridgeView.swift */,
+			);
+			path = Watch2Phone;
+			sourceTree = "<group>";
+		};
+		000000000000000000000004 /* Products */ = {
+			isa = PBXGroup;
+			children = (000000000000000000000009 /* Watch2Phone.app */,);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		000000000000000000000005 /* Watch2Phone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000000000021 /* Target configurations */;
+			buildPhases = (00000000000000000000000F /* Sources */, 000000000000000000000006 /* Frameworks */,);
+			buildRules = ();
+			dependencies = ();
+			name = Watch2Phone;
+			packageProductDependencies = (000000000000000000000008 /* BridgeCore */,);
+			productName = Watch2Phone;
+			productReference = 000000000000000000000009 /* Watch2Phone.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		000000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = { LastUpgradeCheck = 1600; };
+			buildConfigurationList = 00000000000000000000001E /* Project configurations */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (en, Base,);
+			mainGroup = 000000000000000000000002;
+			packageReferences = (000000000000000000000007 /* BridgeCore local package */,);
+			productRefGroup = 000000000000000000000004 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (000000000000000000000005 /* Watch2Phone */,);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00000000000000000000000F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000014 /* BridgeTransport.swift in Sources */,
+				000000000000000000000015 /* CoreBluetoothTransport.swift in Sources */,
+				000000000000000000000016 /* BridgeViewModel.swift in Sources */,
+				000000000000000000000017 /* Watch2PhoneApp.swift in Sources */,
+				000000000000000000000018 /* BridgeView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		00000000000000000000001F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		000000000000000000000020 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		000000000000000000000022 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = watch2phone;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "watch2phone uses Bluetooth to find the watch companion and exchange test messages.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.watch2phone.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		000000000000000000000023 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = watch2phone;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "watch2phone uses Bluetooth to find the watch companion and exchange test messages.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.watch2phone.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00000000000000000000001E /* Project configurations */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (00000000000000000000001F /* Debug */, 000000000000000000000020 /* Release */,);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		000000000000000000000021 /* Target configurations */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (000000000000000000000022 /* Debug */, 000000000000000000000023 /* Release */,);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		000000000000000000000007 /* BridgeCore local package */ = {isa = XCLocalSwiftPackageReference; relativePath = BridgeCore; };
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		000000000000000000000008 /* BridgeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 000000000000000000000007 /* BridgeCore local package */;
+			productName = BridgeCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 000000000000000000000001 /* Project object */;
+}

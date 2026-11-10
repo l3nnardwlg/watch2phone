@@ -60,3 +60,14 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# Local build products and signing files
+DerivedData/
+.swiftpm/
+.gradle/
+apps/wearos/**/build/
+local.properties
+*.jks
+*.keystore
+*.p12
+*.mobileprovision
